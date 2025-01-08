@@ -1,5 +1,6 @@
-from Q_Learning_Agent.py import qAgent
+from Q_Learning_Agent import qAgent
 import gymnasium as gym
+import numpy as np
 
 #Examples of the Q-Learning Agents in both the gymnasium FrozenLake and Taxi environments
 #Documentation and explanation of the environments can be found at https://gymnasium.farama.org/index.html

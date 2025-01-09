@@ -35,11 +35,8 @@ class AtariWrapper(gym.ObservationWrapper):
         )
     
     def observation(self, obs):
-        print('Input: ', obs.shape)
         grayImage = grayscale(obs)
-        print('Gray: ', obs.shape)
-        resXgray = resize_image(grayImage, new_shape=self.new_shape)
-        print('Resize: ', obs.shape)        
+        resXgray = resize_image(grayImage, new_shape=self.new_shape)   
 
         while len(self.frames) < self.stack_size:
             self.frames.append(resXgray / 255.0) #Normalizing for CNN

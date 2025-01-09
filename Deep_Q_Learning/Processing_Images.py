@@ -16,8 +16,8 @@ def resize_image(image: np.array, new_shape: tt.Tuple[int, ...]) -> np.array:
     return resized_image
 
 class AtariWrapper(gym.ObservationWrapper):
-    def __init__(self, env: gym.Env, stack_size=4, new_shape=(84,84)):
-        super().__init__(env)
+    def __init__(self, obs, stack_size=4, new_shape=(84,84)):
+        super().__init__(obs)
         self.stack_size=stack_size
         self.frames = deque()
         self.new_shape=new_shape

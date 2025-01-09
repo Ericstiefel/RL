@@ -1,0 +1,38 @@
+The goal is to train a Deep Q Agent to play atari games.
+
+Documentation Link: https://ale.farama.org/environments/space_invaders/
+
+Observation Space:
+Box(0,255,(210,160,3), unit8)
+Array with 8bit ranging in [0,255] with observations of size (210,160,3)
+
+Action Space: Discrete(6)
+0: None
+1: Fire
+2: Right
+3: Left
+4: Right Fire
+5: Left Fire
+
+Reward: 
+Gain points for killing aliens, with the farthest away resulting in most
+Reward of 200+ is completion bound
+
+DATA PRE-PROCESSING
+Input Data on Atari (210x160x3)
+Remove color(greyscale) (210x160x3)
+Reshape (84x84)
+Group 4 consecutive observations as a state (84x84x4)
+
+Q-TABLE
+Same as Q-Learning
+
+ACTION SELECTION
+epsilon-greedy
+
+NEURAL NET
+Convolution
+Error: MSE(Q-Table, NNpred)
+Optimizer: Gradient Descent
+
+Train on mini-batch from replay buffer 

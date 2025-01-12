@@ -36,8 +36,7 @@ class CNN(torch.nn.Module):
             nn.Linear(in_features=512, out_features=output_shape[0])
         )
     
-    def forward(self, x: np.array) -> torch.FloatTensor:
-        torched = torchify(x)
+    def forward(self, torched: np.array) -> torch.FloatTensor:
         if torched.ndim == 3:
             torched = torched.unsqueeze(0)
         torched = torched.permute(0,3,1,2) #Reorder to (batch, channels, height, width)

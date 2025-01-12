@@ -24,9 +24,6 @@ reshaped = resize_image(gray, new_shape=(84, 84))
 print(reshaped.shape)
 """
 wrapped_env = AtariWrapper(env, stack_size=4, new_shape=(84, 84))
-
-# Reset environment and get the first observation
-obs, _ = wrapped_env.reset()
 processed_obs = wrapped_env.observation(obs)
 """
 print('Full processed Environment shape', processed_obs.shape)

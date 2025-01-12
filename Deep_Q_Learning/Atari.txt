@@ -44,6 +44,17 @@ Optimizer: Gradient Descent
 
 Train on mini-batch from replay buffer 
 
+Deep Q Agent Methods
+
+best_action: NN predicts value of all possible action and selects max
+
+update_table: Using Bellman Equation, update Q Table
+
+play_episode: run one episode & call update_table
+
+retrain: Retrain Neural Net on a minibatch of replay buffer, optimize with MSE
+
+
 
 Process:
 (1) Recieve state from environment
@@ -53,4 +64,4 @@ Process:
 (5) Store (state, action, reward, next_state) in replay buffer 
 (6) Calculate Q-Value through Bellman Equation
 (7) Sample Mini-Batch from replay buffer
-(8) Update NN using MSE (Q-Table values & corresponding NN predictions)
+(8) Update NN using MSE (Q-Table values & corresponding NN predictions) every N steps

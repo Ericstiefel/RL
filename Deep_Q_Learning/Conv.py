@@ -35,6 +35,7 @@ class CNN(torch.nn.Module):
             nn.Dropout(p=dropout),
             nn.Linear(in_features=512, out_features=output_shape[0])
         )
+        
     
     def forward(self, torched: np.array) -> torch.FloatTensor:
         if torched.ndim == 3:

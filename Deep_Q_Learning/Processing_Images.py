@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 
 
 def grayscale(image: np.ndarray) -> np.ndarray:
-
     if image.shape[2] == 3:
         std_grayscale_weights = np.array([0.2989, 0.5870, 0.1140])
         grayscaleImage = np.dot(image[..., :3], std_grayscale_weights)

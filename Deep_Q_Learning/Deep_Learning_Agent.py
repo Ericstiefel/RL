@@ -30,7 +30,6 @@ class DQNAgent:
         self.epsilon_min = epsilon_min
         self.batch_size = batch_size
         self.target_update_freq = target_update_freq
-
         self.replay_buffer = deque(maxlen=replay_buffer_size)
 
         self.q_network = CNN(input_shape=state_shape, output_shape=(action_dim,))

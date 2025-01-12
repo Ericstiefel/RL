@@ -19,7 +19,6 @@ def runTraining(agent: DQNAgent, env: gym.Env, training_iterations=500, avg_over
         print(f"Episode {episode}, Average Iteration Reward: {avg_rew}")
     return agent
 
-
 def test(agent: DQNAgent, env: gym.Env, test_iter=100):
     rewards = []
     

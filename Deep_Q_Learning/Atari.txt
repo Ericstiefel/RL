@@ -8,7 +8,6 @@ Therefore, we need a Machine Learning Algorithm that performs like the Q-Table o
 As a result of the global approximation theorem (Quick Summary: As deep enough Neural Net can approximate any general function), we try to make our neural net behave 
 similar to how our Q-Table would on such a vast observation space, without actually having to view every possible state.
 
-
 Observation Space:
 Box(0,255,(210,160,3), unit8)
 Array with 8bit ranging in [0,255] with observations of size (210,160,3)

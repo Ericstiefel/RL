@@ -8,7 +8,7 @@ import numpy as np
 def train(map: gym.Env, agent: qAgent, batch_iter=10, max_iter=10000, solved_bound=0.95):
   best_reward = float('-inf')
   iter_no = 0
-  while iter_no <= 100000:
+  while iter_no <= max_iter:
     iter_no += 1
     
     curr_reward = 0.0
@@ -23,12 +23,10 @@ def train(map: gym.Env, agent: qAgent, batch_iter=10, max_iter=10000, solved_bou
       break
 
 def test(map: gym.Env, agent: qAgent, testing_iter=100):
-  iter_no = 0
   rewards = []
   testingEnv = map
 
-  while iter_no <= testing_iter:
-    iter_no += 1
+  for _ in range(testing_iter):
     rewards.append(agent.playEpisode(testingEnv))
     
   mean, sd = np.mean(rewards), np.std(rewards)

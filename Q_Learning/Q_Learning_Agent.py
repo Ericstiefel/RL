@@ -41,10 +41,8 @@ class qAgent:
     while True:
         if random.random() < self.epsilon:
             action = env.action_space.sample()
-            exRew = 0
-            
         else:
-            action, exRew = self.bestAction(env, state)  
+            action, _ = self.bestAction(env, state)  
 
         next_state, reward, done, _, _ = env.step(action)
         eps_reward += reward

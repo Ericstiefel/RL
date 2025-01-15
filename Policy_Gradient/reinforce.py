@@ -24,7 +24,7 @@ class Reinforce:
             returns.insert(0, G)
         return torch.FloatTensor(returns)
 
-    def playEpisode(self, env: gym.Env):
+    def playEpisode(self, env: gym.Env, learn: bool=True):
         log_probabilities = []
         rewards = []
         state, _ = env.reset()
@@ -36,8 +36,9 @@ class Reinforce:
             log_probabilities.append(log_probs)
 
             if is_done or is_trunc:
-                returns = self.computeReturns(rewards)
-                self.updatePolicy(log_probabilities, returns)
+                if learn:
+                    returns = self.computeReturns(rewards)
+                    self.updatePolicy(log_probabilities, returns)
                 break
 
             state = next_state

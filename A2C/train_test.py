@@ -27,13 +27,14 @@ def testing(agent: A2C_Agent, env: gym.Env, training_iter: int = 200, n: int = 1
     return mean, sd
 
 
-#Example Usage
-env_name = 'CartPole-v1'
-env = gym.make(env_name)
-state_size, action_size = env.observation_space.shape[0], env.action_space.n
-AC = ActorCritic(state_size, action_size)
-ACagent = A2C_Agent(AC, add_entropy=True)
-runTraining(ACagent, env)
-testing(ACagent, env)
+if __name__ == "__main__":
+    #Example Usage
+    env_name = 'CartPole-v1'
+    env = gym.make(env_name)
+    state_size, action_size = env.observation_space.shape[0], env.action_space.n
+    AC = ActorCritic(state_size, action_size)
+    ACagent = A2C_Agent(AC, add_entropy=True)
+    runTraining(ACagent, env, iterations=1000)
+    testing(ACagent, env, training_iter=30)
 
 

@@ -6,10 +6,7 @@ import numpy as np
 
 
 def runTraining(agent: A2C_Agent, env: gym.Env, iterations: int = 1000, n: int = 10, chart: bool = True):
-    avg_episode_rewards = []
-    for _ in range(1, iterations+1):
-        avg_episode_rewards.append(agent.nEpisodes(env, n))
-
+    avg_episode_rewards = [avg_episode_rewards.append(agent.nEpisodes(env, n)) for _ in range(iterations)]
     if chart:
         plt.plot(range(iterations), avg_episode_rewards, linestyle='-', color='b', label='Rewards')
         plt.xlabel('Iteration number')

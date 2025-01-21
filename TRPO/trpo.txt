@@ -1,0 +1,23 @@
+TRPO Trust Region Policy Optimization
+
+On Policy, Policy Gradient, Trust Region based Method
+
+Uses KL Divergence (difference between two distributions) as the change in Policy
+
+The general idea is to not allow the Policy parameters diverge too much from the last iteration,
+which could cause it to go off the rails.
+
+ALGORITHM:
+Initialize a Stochastic Policy (typically a NN) with a distribution/softmax as the output for the continuous/discrete action space
+
+Loop over number of episodes:
+    Interact with environment using current Policy
+    Compute Advantage A(s, a) = (Q(s,a) - V(s))
+
+    OBJECTIVE FUNCTION: Loss = Eold[(Policynew) / (Policyold) * A(s, a)]
+    CONSTRAINT: E[KLdistance(Policyold || Policynew)] <= Lambda
+
+    Optimize via Gradient
+
+WARNING: This method is extremely slow in implementation, as a result of both my unwillingness to optimize in addition to the 
+extensive necessary computations

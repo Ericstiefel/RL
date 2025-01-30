@@ -1,0 +1,42 @@
+This is an explanation for the other files in this folder, which is an implementation of DeepMind's AlphaGo-Zero RL model which dominated the games of Go and Chess.
+Due to a lack of computing power, this will be an implementation in Connect 4, which has 4.5 trillion possible board configurations, unsolvable by my mere laptop, but able to 
+run the algorithm decently properly, given ample time. 
+
+Each agent operates similar to the Actor-Critic architecture, inputting a state(game position), and returning both a probability distribution over the actions, and the estimated game outcome.
+Future rewards are not discounted, as we're operating within a deterministic environment.
+
+The AlphaGo-Zero algorithm centers around self-play, consisting of three main agents in the training component, the two agents playing, and one observer, using the playing data to train.
+
+Search Details:
+Due to the incapability of computing every possible move at every state (4.5 trillion), we need a proper way of search and evaluation.
+
+The method utilized here is Monte Carlo Tree Search (MCTS), which requires full complete games for evaluation.
+
+Our way of regulating the magnitude of search is pruning, which by some metric(here evaluation from our Value Network), we decide this is a suboptimal area of search less likely to 
+contain the optimal sequence of states.
+
+The searches operate through DFS(Depth-First Search) and there is a degree of random-sampling to explore new states.
+Each search fully goes from the current state to the end of the game, updating the Agent at the end of each trajectory.
+
+
+Each edge(s,a) has attributes of:
+P(s,a), the prior probability of the edge
+N(s,a), counting how many times the edge was visited in search
+Q(s,a), the value associated with the action at this state
+
+The proposed value associated with an edge is Q(s,a) + P(s,a) / (1 + N(s,a)), 
+factoring in how accurate we believe our value associated with the edge truly is (if it's visited often, we've explored this state a lot and the value is more accurate)
+
+This search process is repeated many times(1000-2000 in AlphaGo-Zero) to accumulate enough data about the action, in order that N(s,a) is large enough to use as a guage for action probability.
+
+Similar to the Actor-Critic(A2C) setup, AlphaGo-Zero utilizes self-play to improve the agent.
+
+For self-play, the first k moves are selected in some stochastic method, and afterward, action selection mutates towards determinism, and we select the action with the largest N(s,a).
+In evaluation games, the actions are completely determinstic based on N(s,a).
+
+After each game, all the played states, Pis(probabilities of each action), reward(game result) are placed into a replay buffer.
+Update:
+Value Network: Sample mini-batches and use MSE between predicted position value and actual position Value
+Action Probabilities: Use Cross-Entropy loss between the predicted probabilities and sampled probabilities
+
+

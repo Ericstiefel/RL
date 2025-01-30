@@ -3,7 +3,7 @@ from net import ConnectFourNet
 from ConnectFour import Board
 
 Net = ConnectFourNet()
-checkpoint = torch.load('connect4net.pth')
+checkpoint = torch.load('AlphaGoZero\connect4net.pth') #Modify directory if necessary
 Net.load_state_dict(checkpoint['model_state_dict'])  # Extract the state dictionary
 Net.eval()
 
